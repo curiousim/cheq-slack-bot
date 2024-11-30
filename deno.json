@@ -4,10 +4,18 @@
     "hono": "jsr:@hono/hono@^4.6.12"
   },
   "tasks": {
-    "start": "deno run --allow-net main.ts"
+    "start": "deno run --allow-net src/main.ts"
   },
   "compilerOptions": {
     "jsx": "precompile",
     "jsxImportSource": "hono/jsx"
+  },
+  "deploy": {
+    "project": "e9dc1b6d-ea65-40e3-8d16-0f138451a6af",
+    "exclude": [
+      "**/node_modules"
+    ],
+    "include": [],
+    "entrypoint": "src/main.ts"
   }
 }
