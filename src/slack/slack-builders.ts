@@ -1,4 +1,5 @@
-import { createHmac } from "npm:crypto-js";
+import HmacSHA256 from "npm:crypto-js/hmac-sha256";
+import Hex from "npm:crypto-js/enc-hex";
 import process from "node:process";
 import {
   InputBlockArgs,
@@ -39,10 +40,9 @@ export function verifySlackRequest(request: {
     return false;
   }
 
-  // make a hash of the request using the same approach Slack used
-  const hash = createHmac("sha256", secret)
-    .update(`v0:${timestamp}:${request.body}`)
-    .digest("hex");
+  // Create the hash
+  const baseString = `v0:${timestamp}:${request.body}`;
+  const hash = HmacSHA256(baseString, secret).toString(Hex);
 
   // we know the request is valid if our hash matches Slack’s
   return `v0=${hash}` === signature;
