@@ -103,7 +103,7 @@ export type ModalArgs = {
   blocks: SlackBlock[];
 };
 
-type SlackModalPayload = {
+export type SlackModalPayload = {
   type: string;
   callback_id?: string;
   team: {

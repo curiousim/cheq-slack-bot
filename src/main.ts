@@ -10,4 +10,8 @@ app.post("/alert", (c) => {
   return c.json({ message: "Alert received" });
 });
 
+app.get("/health", (c) => {
+  return c.json({ message: "Healthy" });
+});
+
 Deno.serve(app.fetch);
